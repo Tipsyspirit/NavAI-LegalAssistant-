@@ -1,0 +1,24 @@
+# NavAI – Requirements
+# Install with:  pip install -r requirements.txt
+
+# ── Gradio frontend ───────────────────────────────────────────
+gradio>=4.20.0
+
+# ── LlamaIndex core ───────────────────────────────────────────
+llama-index-core>=0.10.0
+llama-index-vector-stores-chroma>=0.1.0
+llama-index-embeddings-huggingface>=0.1.0
+llama-index-llms-ollama>=0.1.0
+
+# ── Vector database ───────────────────────────────────────────
+chromadb>=0.4.0
+
+# ── Embeddings ────────────────────────────────────────────────
+sentence-transformers>=2.3.0
+torch>=2.0.0          # CPU build is fine; remove version pin for GPU
+
+# ── PDF processing ────────────────────────────────────────────
+pypdf>=3.0.0
+
+# ── Utilities ─────────────────────────────────────────────────
+python-dotenv>=1.0.0
