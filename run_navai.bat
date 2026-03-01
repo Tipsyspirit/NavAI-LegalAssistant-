@@ -94,12 +94,33 @@ if not exist "venv" (
 )
 call venv\Scripts\activate.bat
 
-echo  Installing / verifying packages...
-pip install --upgrade pip --quiet
-pip install -r requirements.txt --quiet
+echo  Step 5a — upgrading pip...
+pip install --upgrade pip
 if errorlevel 1 (
-    echo  ERROR: Package installation failed.
-    echo  Try running manually: pip install -r requirements.txt
+    echo  WARNING: pip upgrade failed, continuing anyway...
+)
+
+echo  Step 5b — installing gradio first...
+pip install "gradio>=4.20.0"
+if errorlevel 1 (
+    echo  ERROR: Failed to install gradio.
+    pause
+    exit /b 1
+)
+
+echo  Step 5c — installing remaining packages...
+pip install -r requirements.txt
+if errorlevel 1 (
+    echo  ERROR: Package installation failed. See errors above.
+    pause
+    exit /b 1
+)
+
+echo  Verifying gradio is importable...
+python -c "import gradio as gr; print('  OK — gradio', gr.__version__)"
+if errorlevel 1 (
+    echo  ERROR: gradio still not importable after install. 
+    echo  Try: pip install --force-reinstall gradio
     pause
     exit /b 1
 )
