@@ -1,0 +1,12 @@
+# Auto-generated — never commit these
+chroma_db/
+models/
+__pycache__/
+*.pyc
+{data,models,chroma_db,utils}/
+
+# Secrets
+.env
+
+# Old/unused data files
+data/chunks_0.json
